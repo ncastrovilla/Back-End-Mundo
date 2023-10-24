@@ -33,3 +33,9 @@ Con todo lo anterior listo se procedera a corre la aplicacón.
     php artisan serve
 
 Generalmente se alojara en `localhost:8000`, de no ser asi la dirección saldra especificada en la consola.
+
+API_KEY = 9deb9beb54f1
+
+## Autor
+
+Nicolás Castro
