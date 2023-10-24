@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\ApiKeyValidation;
 use App\Http\Controllers\Api\BodegasController;
 use App\Http\Controllers\Api\MarcaController;
 use App\Http\Controllers\Api\ModeloController;
@@ -22,26 +23,28 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('dispositivos')->group(function(){
+Route::group(["middleware" => ApiKeyValidation::class], function() {
+    Route::prefix('dispositivos')->group(function(){
 
-    Route::get('/DispositivosPorBodega',[DispositivoController::class,'getDispositivos']);
-
-});
-
-Route::prefix('bodegas')->group(function(){
-
-    Route::get('/ObtenerBodega',[BodegasController::class,'getBodegas']);
-
-});
-
-Route::prefix('marcas')->group(function(){
-
-    Route::get('/ObtenerMarcas',[MarcaController::class,'getMarcas']);
-
-});
-
-Route::prefix('modelos')->group(function(){
-
-    Route::get('/ObtenerModelosPorMarca',[ModeloController::class,'getModelosPorMarca']);
-
+        Route::get('/DispositivosPorBodega',[DispositivoController::class,'getDispositivos']);
+    
+    });
+    
+    Route::prefix('bodegas')->group(function(){
+    
+        Route::get('/ObtenerBodega',[BodegasController::class,'getBodegas']);
+    
+    });
+    
+    Route::prefix('marcas')->group(function(){
+    
+        Route::get('/ObtenerMarcas',[MarcaController::class,'getMarcas']);
+    
+    });
+    
+    Route::prefix('modelos')->group(function(){
+    
+        Route::get('/ObtenerModelosPorMarca',[ModeloController::class,'getModelosPorMarca']);
+    
+    });
 });
