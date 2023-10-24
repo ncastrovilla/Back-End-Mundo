@@ -24,6 +24,10 @@ Tambien se poblaran las tablas de la base de datos con.
 
     php artisan db:seed --class=DatabaseSeeder
 
+Generamos la aplication key
+
+    php artisan key:generate
+
 Con todo lo anterior listo se procedera a corre la aplicacón.
 
     php artisan serve
